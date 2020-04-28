@@ -1,0 +1,90 @@
+{% extends 'find_room/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block header %}
+
+     <header>
+                <nav class="navbar navbar-expand-md navbar-light find_room_nav_top fixed-top">
+                  <div class="container-fluid">
+                     <a class="navbar-brand" href="#find_room"><img src="{% static 'img/logo.png' %}" width="100px" height="100px"/></a>
+                     <button type="button" class="navbar-toggler"  data-toggle="collapse" data-target="#navbarResponsive"> 
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="navbarResponsive">
+                       <ul class="navbar-nav ml-auto">
+                         <li class="nav-item">
+                           <a class="nav-link" href="/find_room">Find Room</a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="nav-link"href="." style="color: #41464b !important;">Upload Room</a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="nav-link"href="/available_rooms">Available Room</a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="nav-link" href="/about_us">About Us</a>
+                         </li>
+                       </ul>
+                     </div>
+
+                  </div>
+                </nav>
+      </header>
+
+{% endblock %}
+
+
+{% block content %}
+      <div class="upload-content">
+        <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-8">
+                  <h1 class="mt-2 text-center">LANDLORD TO UPLOAD THE ROOM</h1>
+                  <hr class="mt-0 mb-1">
+                      <form method="post" action="."> {% csrf_token %}
+                              
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 mb-0">
+                                  {{ uploadroom_form.province|as_crispy_field }}
+                                </div>
+                                <div class="form-group col-md-6 mb-0">
+                                  {{ uploadroom_form.location|as_crispy_field }}
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 mb-0">
+                                  {{ uploadroom_form.section|as_crispy_field }}
+                                </div>
+                                <div class="form-group col-md-6 mb-0">
+                                  {{ uploadroom_form.price|as_crispy_field }}
+                                </div>
+
+                            </div>
+                                {{ uploadroom_form.address|as_crispy_field }}
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 mb-0">
+                                  {{ uploadroom_form.contact|as_crispy_field }}
+                                </div>
+                                <div class="form-group col-md-6 mb-0">
+                                  {{ uploadroom_form.image|as_crispy_field }}
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn submit-button">Save</button>
+                      </form>
+                </div>
+              </div>
+
+        </div>
+
+      </div>
+
+
+{% endblock %}
